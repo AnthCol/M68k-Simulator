@@ -2,12 +2,15 @@
 
 A simulator for the [Motorola 68000](https://en.wikipedia.org/wiki/Motorola_68000)!
 
-### Technologies
+### Major Technologies
 
 - React
 - Spring Boot
 - PostgreSQL
 - Docker
+
+### Minor Technologies
+- Vite
 
 
 ### Stages
