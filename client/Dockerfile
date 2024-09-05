@@ -1,18 +1,16 @@
 FROM node:alpine
 
 WORKDIR /client
-ADD . /client
 
-RUN npm i npm@10.8.2 -g
-
-COPY package.json package.json
-COPY package-lock.json package-lock.json
+COPY package.json package-lock.json ./
 
 RUN npm ci 
-
-ENV PORT=3000
+# Install the extra modules
+RUN npm i @uiw/react-codemirror  @uiw/codemirror-theme-vscode
 
 COPY . . 
+
+ENV PORT=3000
 
 CMD ["npm", "start", "--", "--host"]
 
