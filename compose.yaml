@@ -1,7 +1,37 @@
 services:
-  react:
+  client:
     build: ./client
     ports:
       - "3000:3000"
     environment:
       - BACKEND_PROXY=http://localhost:3000
+    networks:
+      - server-client
+  server:
+    build: ./server
+    ports:
+      - "8080:8080"
+    networks:
+      - server-client
+    #   - server-database
+
+
+  # database:
+  #   image: 'postgres:latest'
+    # ports:
+    #   - 5432:5432
+    # environment:
+    #   POSTGRES_USER: username
+    #   POSTGRES_PASSWORD: password
+    #   POSTGRES_DB: default_database
+    # networks:
+    #   - server-database 
+    # volumes:
+    #   - ${PWD}/saved/:/var/lib/postgresql/data/
+
+networks:
+  server-client:
+  # server-database:
+
+
+
