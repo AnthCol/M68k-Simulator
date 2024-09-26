@@ -3,17 +3,17 @@ services:
     build: ./server
     ports:
       - "8080:8080"
-    networks:
-      - server-client
+#    networks:
+#      - server-client
     #   - server-database
   client:
     build: ./client
     ports:
       - "5173:5173"
-    environment:
-      - BACKEND_PROXY=http://server:8080
-    networks:
-      - server-client
+#    environment:
+#      - BACKEND_PROXY=http://server:8080
+#    networks:
+#      - server-client
   # database:
   #   image: 'postgres:latest'
     # ports:
@@ -26,8 +26,8 @@ services:
     #   - server-database 
     # volumes:
     #   - ${PWD}/saved/:/var/lib/postgresql/data/
-networks:
-  server-client:
+#networks:
+#  server-client:
   # server-database:
 
 
