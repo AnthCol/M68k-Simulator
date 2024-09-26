@@ -1,0 +1,8 @@
+.cm-editor {
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: left;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}

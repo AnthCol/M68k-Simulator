@@ -1,0 +1,21 @@
+#root {
+  /* max-width: 2000px; */
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.editorConsoleContainer {
+    display: flex; 
+    height: 100%;
+
+    /* flex-direction: row;
+    flex-wrap: nowrap; */
+    /* align-items: center; */
+}
