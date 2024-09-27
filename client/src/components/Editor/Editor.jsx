@@ -1,46 +1,35 @@
-import React, { useEffect, useRef } from "react"
-import { basicSetup, EditorView } from "codemirror"
-import { EditorState, Compartment } from "@codemirror/state"
-import "./Editor.css"
-// import { oneDark } from  "@codemirror/theme-one-dark"
-// https://lezer.codemirror.net/
-// parsing for lang ^ 
+import {useState, forwardRef, useImperativeHandle} from "react";
+import ace from "ace-builds/src-noconflict/ace";
+import AceEditor from "react-ace";
+import "./Editor.css";
 
-function Editor({editorViewReference}) 
-{
-    const editorReference = useRef(null);
+ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
 
-    const change = () => {
-        if (viewReference.current) {
-            const doc = viewReference.current.state.doc;
-            console.log("printing information " + doc)
-        }
-        return "EMPTY\n"; 
-    };
 
-    useEffect(() => {
-        const state = EditorState.create({
-            extensions: [
-                basicSetup,
-            ],
-        });
-        
-        const view = new EditorView({
-            state: state,
-            parent: editorReference.current,
-        });
+const Editor = forwardRef((props, ref) => {
+    const [userCode, setUserCode] = useState("");
+    const codeChange = (newCode) => {
+        setUserCode(newCode);
+    }
 
-        editorViewReference.current = view;
+    const defaultProgram = "ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
 
-        return () => {
-            view.destroy();
-        };
-
-    }, [editorViewReference]);
+    
+    useImperativeHandle(ref, () => ({
+        getCode: () => userCode
+    }));
     
     return (
-        <div ref={editorReference}/>
+        <AceEditor
+            onChange={codeChange}
+            defaultValue={defaultProgram}
+            fontSize={14}
+            lineHeight={19}
+            showGutter={true}
+            highlightActiveLine={true}
+            shotPrintMargin={true} 
+        />
     );
-}
+});
 
 export default Editor;

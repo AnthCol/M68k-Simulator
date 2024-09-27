@@ -13,9 +13,11 @@
 
 .editorConsoleContainer {
     display: flex; 
-    height: 100%;
+}
 
-    /* flex-direction: row;
-    flex-wrap: nowrap; */
-    /* align-items: center; */
+.editor, .console {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
+    overflow: auto;
 }

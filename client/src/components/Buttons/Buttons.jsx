@@ -10,8 +10,6 @@ function Buttons() {
             <SaveButton/>
             <DeleteButton/>
             <RunButton/>
-            <br/>
-            <br/>
         </>
     );
 }

@@ -4,7 +4,7 @@ function Console()
 {
     return (
         <>
-            <input type="text" id="console" />
+            <input type="text" className="console" />
         </>
     );
 }
