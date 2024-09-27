@@ -11,27 +11,29 @@ import "./App.css"
 
 function App() 
 { 
-    const userCodeReference = useRef(null); 
+    const [userCode, setUserCode] = useState(""); 
 
-    const buttonfunc = () => {
-        if (userCodeReference.current) {
-            let content = userCodeReference.current.getCode();
-            console.log(content);
-        }
+    const updateParentCode = (code) => {
+        setUserCode(code);
     }
+
+    const printCode = () => {
+        console.log(userCode);
+    }
+
 
     return (
         <>
             <BrowserRouter>
                 <Header/>
-                <button onClick={buttonfunc}>press me</button>
                 <Buttons/>
+                <button onClick={printCode}> print</button>
                 <br/>
                 <br/>
                 <br/>
                 {/* <div className="editorConsoleContainer">
                     <div className="editor"> */}
-                        <Editor ref={userCodeReference}/>
+                        <Editor syncParentCode={updateParentCode}/>
                     {/* </div>
                     <div className="console">
                         <Console/>

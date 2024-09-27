@@ -6,19 +6,14 @@ import "./Editor.css";
 ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
 
 
-const Editor = forwardRef((props, ref) => {
-    const [userCode, setUserCode] = useState("");
+const Editor = ({syncParentCode}) => {
+    
     const codeChange = (newCode) => {
-        setUserCode(newCode);
-    }
+        syncParentCode(newCode);
+    } 
 
     const defaultProgram = "ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
-
-    
-    useImperativeHandle(ref, () => ({
-        getCode: () => userCode
-    }));
-    
+ 
     return (
         <AceEditor
             onChange={codeChange}
@@ -30,6 +25,6 @@ const Editor = forwardRef((props, ref) => {
             shotPrintMargin={true} 
         />
     );
-});
+}
 
 export default Editor;
