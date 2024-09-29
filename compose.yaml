@@ -10,6 +10,11 @@ services:
     build: ./client
     ports:
       - "5173:5173"
+    volumes:
+      - ./client/src:/client/src
+    
+    # Compose flie profile
+    # run dev, run prod
 #    environment:
 #      - BACKEND_PROXY=http://server:8080
 #    networks:
