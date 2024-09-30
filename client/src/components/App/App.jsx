@@ -5,40 +5,35 @@ import Editor from "../Editor/Editor.jsx"
 import Header from "../Header/Header.jsx"
 import Buttons from "../Buttons/Buttons.jsx"
 import Console from "../Console/Console.jsx"
+import FileList from "../FileList/FileList.jsx"
+import UserAccount from "../../classes/UserAccount.jsx"
 
 import "./App.css"
 
 
 function App() 
 { 
-    const [userCode, setUserCode] = useState(""); 
+    const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
+    const [userCode, setUserCode] = useState(defaultProgram); 
+    // const [userFile, setUserFile] = useState(new File()); 
+    const [userAccount, setUserAccount] = useState(new UserAccount());
 
-    const updateParentCode = (code) => {
+    const syncCode = (code) => {
         setUserCode(code);
     }
-
-    const printCode = () => {
-        console.log(userCode);
-    }
-
 
     return (
         <>
             <BrowserRouter>
                 <Header/>
                 <Buttons/>
-                <button onClick={printCode}> print</button>
                 <br/>
                 <br/>
-                <br/>
-                {/* <div className="editorConsoleContainer">
-                    <div className="editor"> */}
-                        <Editor syncParentCode={updateParentCode}/>
-                    {/* </div>
-                    <div className="console">
-                        <Console/>
-                    </div>
-                </div> */}
+                <div className="fileListEditorConsoleContainer">
+                    <FileList/>
+                    <Editor syncAppCode={syncCode}/>
+                    <Console/>
+                </div>
             </BrowserRouter>
         </>
     );
