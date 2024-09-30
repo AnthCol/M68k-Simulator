@@ -3,3 +3,5 @@ class UserAccount {
         this.userNumber = 1; 
     }
 }
+
+export default UserAccount;
