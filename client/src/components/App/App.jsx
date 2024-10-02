@@ -13,13 +13,22 @@ import "./App.css"
 
 function App() 
 { 
-    const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
-    const [userCode, setUserCode] = useState(defaultProgram); 
-    // const [userFile, setUserFile] = useState(new File()); 
     const [userAccount, setUserAccount] = useState(new UserAccount());
+    const [currentFile, setCurrentFile] = useState(new File([undefined], [undefined]));
+    const [allFiles, setAllFiles] = useState([]);
 
-    const syncCode = (code) => {
-        setUserCode(code);
+    // The file list takes this, and updates the current file on button press. 
+    // Now need to send information to the editor, to update it's value. 
+    // Temp file content for now, would need to grab from the database. 
+    const userChangedFile = (file) => {
+        console.log("&&& user changed file: ");
+        console.log("Name: " + file.name + "\n" + "Content: " + file.content + "\n");
+        setCurrentFile(file);
+    }
+
+    const userChangedCode = (code) => {
+        console.log("USE CHANGED CODE!!\n"); 
+        currentFile.content = code;
     }
 
     return (
@@ -30,8 +39,8 @@ function App()
                 <br/>
                 <br/>
                 <div className="fileListEditorConsoleContainer">
-                    <FileList/>
-                    <Editor syncAppCode={syncCode}/>
+                    <FileList syncFileChange={userChangedFile}/>
+                    <Editor syncCodeChange={userChangedCode} currentFile={currentFile}/>
                     <Console/>
                 </div>
             </BrowserRouter>

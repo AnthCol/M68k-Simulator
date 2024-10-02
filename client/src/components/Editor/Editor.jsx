@@ -1,24 +1,29 @@
-import {useState, forwardRef, useImperativeHandle} from "react";
+import { useState, useEffect } from "react";
 import ace from "ace-builds/src-noconflict/ace";
 import AceEditor from "react-ace";
 import "./Editor.css";
 
 ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
 
-
-const Editor = ({syncAppCode}) => {
+const Editor = ({syncCodeChange, currentFile}) => {
     
-    const codeChange = (newCode) => {
-        syncAppCode(newCode);
-    } 
+    const [file, setFile] = useState(new File([undefined], [undefined]));
+    
+    useEffect(() => {
+        if (currentFile) {
+            setFile(currentFile);
+        }
+    }, [currentFile]);
 
-    const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
+    const codeChange = (newCode) => {
+        syncCodeChange(newCode);
+    } 
  
     return (
         <div className="editor">
             <AceEditor
                 onChange={codeChange}
-                defaultValue={defaultProgram}
+                value={file.content}
                 fontSize={14}
                 lineHeight={19}
                 showGutter={true}

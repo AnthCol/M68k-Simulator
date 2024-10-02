@@ -1,5 +1,18 @@
 .fileList {
-    background-color: blue;
+    background-color: darkgray;
     height: 100%;
     width: 10%;
+    overflow-y: scroll;
+    border: 1px solid white;
 }   
+
+.file {
+    border: 1px solid gray;
+    border-radius: 1px;
+    width: 100%;
+    height: 4%;
+    background-color: gainsboro; 
+    color: black;
+    text-align: centre;
+    font-family: 'Courier New', Courier, monospace
+}

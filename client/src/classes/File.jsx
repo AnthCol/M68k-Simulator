@@ -1,3 +1,4 @@
+const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
 
 class File {
     constructor(name, content) {
@@ -5,8 +6,8 @@ class File {
             this.name = name;
             this.content = content;
         } else {
-            this.name = "Unnamed"
-            this.content = "";
+            this.name = "unsaved"
+            this.content = defaultProgram;
         }
     }    
 }
