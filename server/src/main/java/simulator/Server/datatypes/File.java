@@ -4,12 +4,12 @@ public class File {
     private String name;
     private String content;
 
-    File() {
-        name = "";
+    public File() {
+        name = "Unnamed File";
         content = "";
     }
 
-    File(String name, String content) {
+    public File(String name, String content) {
         this.name = name;
         this.content = content;
     }

@@ -1,16 +1,7 @@
 import {useState, useEffect} from "react"
 import File from "../../classes/File"
 import "./FileList.css"
-
-function convertJSONToFileObject(json) {
-    let list = [];
-    console.log("$$$$$$ printing in convert JSON\n");
-    console.log(JSON.stringify(json));
-    console.log("$$$$$$$ done printing in convert JSON\n");
-    return list;
-}
-
-
+import ServerInformation from "../../classes/ServerInformation"
 
 const FileList = ({syncFileChange}) => 
 {
@@ -18,11 +9,20 @@ const FileList = ({syncFileChange}) =>
         
     // Retrieve file data from the database on first render. 
     useEffect(() => {
-        let json = [];
-        let data = convertJSONToFileObject(json);
-        setFileData(data);
+        const getFiles = async () => {
+            try {
+                const response = await fetch(ServerInformation.location + "/api/files/get");
+                if (!response.ok) {
+                    throw new Error("Network response for api/files/get was not ok.");
+                }
+                const data = await response.json();
+                setFileData(data);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+        getFiles();
     }, []);
-
 
     function fileChange(file) {
         syncFileChange(file);
