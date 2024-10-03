@@ -18,12 +18,15 @@ const Editor = ({syncCodeChange, currentFile}) => {
     const codeChange = (newCode) => {
         syncCodeChange(newCode);
     } 
- 
+    
+    const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
+
     return (
         <div className="editor">
             <AceEditor
                 onChange={codeChange}
                 value={file.content}
+                defaultValue={defaultProgram}
                 fontSize={14}
                 lineHeight={19}
                 showGutter={true}

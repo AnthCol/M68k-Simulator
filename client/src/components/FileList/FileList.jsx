@@ -1,24 +1,28 @@
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import File from "../../classes/File"
 import "./FileList.css"
 
+function convertJSONToFileObject(json) {
+    let list = [];
+    console.log("$$$$$$ printing in convert JSON\n");
+    console.log(JSON.stringify(json));
+    console.log("$$$$$$$ done printing in convert JSON\n");
+    return list;
+}
+
+
+
 const FileList = ({syncFileChange}) => 
 {
-    const testData = [
-        new File("first.x68", "Sample Content"), 
-        new File("second.x68", "Sample Content 2"),
-        new File("third.x68", "Sample Content 3"), 
-    ]
-
-    const [fileData, setFileData] = useState(testData);
+    const [fileData, setFileData] = useState([]);
         
-    
-    // From here we must retrieve from database all of the files 
-    // For now using fake data. 
-    // const getFiles = () => {
-    //     const list = [];
-    //     setFileData(list);
-    // }
+    // Retrieve file data from the database on first render. 
+    useEffect(() => {
+        let json = [];
+        let data = convertJSONToFileObject(json);
+        setFileData(data);
+    }, []);
+
 
     function fileChange(file) {
         syncFileChange(file);

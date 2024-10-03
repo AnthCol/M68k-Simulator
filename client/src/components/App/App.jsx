@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 
 import Editor from "../Editor/Editor.jsx"
@@ -15,19 +15,16 @@ function App()
 { 
     const [userAccount, setUserAccount] = useState(new UserAccount());
     const [currentFile, setCurrentFile] = useState(new File([undefined], [undefined]));
-    const [allFiles, setAllFiles] = useState([]);
 
-    // The file list takes this, and updates the current file on button press. 
-    // Now need to send information to the editor, to update it's value. 
-    // Temp file content for now, would need to grab from the database. 
+    // Will be called when the user presses one of the file buttons 
+    // in the FileList. The Editor takes the currentFile and has a 
+    // useEffect, so it's content will be updated when this happens 
+    // as well. 
     const userChangedFile = (file) => {
-        console.log("&&& user changed file: ");
-        console.log("Name: " + file.name + "\n" + "Content: " + file.content + "\n");
         setCurrentFile(file);
     }
 
     const userChangedCode = (code) => {
-        console.log("USE CHANGED CODE!!\n"); 
         currentFile.content = code;
     }
 
