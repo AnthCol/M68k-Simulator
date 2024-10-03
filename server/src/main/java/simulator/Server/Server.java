@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class ServerApplication {
+public class Server {
 
     // @RequestMapping("/")
     // public void home() {
@@ -33,7 +33,7 @@ public class ServerApplication {
     // }
 
 	public static void main(String[] args) {
-		SpringApplication.run(ServerApplication.class, args);
+		SpringApplication.run(Server.class, args);
 	}
 
 }
