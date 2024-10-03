@@ -1,18 +1,44 @@
 services:
+
   server:
     build: ./server
     ports:
       - "8080:8080"
-#    networks:
-#      - server-client
-    #   - server-database
+    environment:
+      SPRING_DATASOURCE_URL: 
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+  
+    depends_on:
+      - database
+
+
   client:
     build: ./client
     ports:
       - "5173:5173"
     volumes:
       - ./client/src:/client/src
-    
+
+
+  database:
+    build: ./database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: database
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+
+
+
+
+
+
+
+
+
     # Compose flie profile
     # run dev, run prod
 #    environment:
