@@ -21,6 +21,14 @@ public class File {
     public String getContent() {
         return this.content;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setContent(String content) {
+        this.content = content;
+    }
 }
 
 
