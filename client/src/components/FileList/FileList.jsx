@@ -6,7 +6,9 @@ import ServerInformation from "../../classes/ServerInformation"
 const FileList = ({syncFileChange}) => 
 {
     const [fileData, setFileData] = useState([]);
-        
+    const [selectedFile, setSelectedFile] = useState(new File([undefined], [undefined])); 
+    
+
     // Retrieve file data from the database on first render. 
     useEffect(() => {
         const getFiles = async () => {
@@ -22,11 +24,29 @@ const FileList = ({syncFileChange}) =>
             }
         }
         getFiles();
+        
+        // After getting all files, set the selected one to the first 
+        // in the list.
+        
+        if (fileData.length != 0) {
+            fileChange(fileData[0]);
+        }
+
     }, []);
 
     function fileChange(file) {
         syncFileChange(file);
+        setSelectedFile(file);
     } 
+
+
+    function getFileButtonClassName(fileInList) {
+        let result = "unselectedFile";        
+        if (fileInList == selectedFile) {
+            result = "selectedFile";
+        }
+        return result;
+    }
 
     return (
         <>
@@ -34,7 +54,7 @@ const FileList = ({syncFileChange}) =>
                 {fileData.map((file, index) => (
                     <button 
                         key={index} 
-                        className="file" 
+                        className={getFileButtonClassName(file)}
                         onClick={() => fileChange(file)}>     
                     {file.name}
                     </button>
