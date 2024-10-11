@@ -13,8 +13,8 @@ services:
     build: ./client
     ports:
       - "5173:5173"
-    # volumes:
-    #   - ./client/src:/client/src
+    volumes:
+      - ./client/src:/client/src
     networks:
       - client-server
       - server-database
