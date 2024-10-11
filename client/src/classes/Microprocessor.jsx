@@ -19,3 +19,5 @@ class Microprocessor {
         this.PC = 0;
     }
 }
+
+export default Microprocessor;
