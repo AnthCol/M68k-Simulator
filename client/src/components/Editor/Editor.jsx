@@ -19,7 +19,7 @@ const Editor = ({syncCodeChange, currentFile}) => {
         syncCodeChange(newCode);
     } 
     
-    const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
+    const defaultProgram = "";
 
     return (
         <div className="editor">
