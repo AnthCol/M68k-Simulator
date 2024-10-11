@@ -1,8 +1,7 @@
 import {useState, useEffect} from "react"
 import File from "../../classes/File"
-import ServerInformation from "../../classes/ServerInformation"
 import PathInformation from "../../classes/PathInformation"
-
+import ServerInformation from "../../classes/ServerInformation"
 import "./FileList.css"
 
 
@@ -19,7 +18,15 @@ const FileList = ({syncFileChange}) =>
                     throw new Error("Network response for " + PathInformation.getFilesPath + " was not ok.");
                 }
                 const data = await response.json();
-                setFileData(data); 
+                
+                if (data.length == 0) {
+                    const list = [new File("", "")];
+                    setFileData(list);
+                } else {
+                    const list = data.map(file => new File(file.name, file.content));
+                    setFileData(list);
+                }
+
             } catch (error) {
                 console.error(error.message);
             }

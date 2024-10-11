@@ -20,6 +20,7 @@ import "./App.css"
 function App() 
 { 
     const [currentFile, setCurrentFile] = useState(new File("", ""));
+    const [consoleData, setConsoleData] = useState(""); 
 
     // Will be called when the user presses one of the file buttons 
     // in the FileList. The Editor takes the currentFile and has a 
@@ -30,32 +31,31 @@ function App()
     }
 
     const userChangedCode = (code) => {
-        currentFile.setContent(code); 
+        const name = currentFile.getName();
+        const file = new File(name, code);
+        setCurrentFile(file);
     }
 
-    // new adds to the lsit
+    // new adds to the list
     const newFileCreated = () => {
-
+        return;
     }
 
     // save saves to the list. 
     const saveCurrentFile = () => {
-
+        return;
     }
 
     // deletes current file
     const deleteCurrentFile = () => {
-
+        return;
     }
 
     // run current file
-
-    const runCurrentFile = () => {
-        interpreter = new Interpreter(); 
-        
-
-
-        return result;
+    const runInterpreterOnCurrentFile = () => {
+        let interpreter = new Interpreter(); 
+        let result = interpreter.interpret(currentFile.getContent());
+        setConsoleData(result);
     }
 
 
@@ -66,13 +66,13 @@ function App()
                 <NewButton/>
                 <SaveButton/>
                 <DeleteButton/>
-                <RunButton/>
+                <RunButton runInterpreter={runInterpreterOnCurrentFile}/>
                 <br/>
                 <br/>
                 <div className="fileListEditorConsoleContainer">
                     <FileList syncFileChange={userChangedFile}/>
                     <Editor syncCodeChange={userChangedCode} currentFile={currentFile}/>
-                    <Console/>
+                    <Console consoleData={consoleData}/>
                 </div>
             </BrowserRouter>
         </>

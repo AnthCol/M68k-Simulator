@@ -7,9 +7,10 @@ class Interpreter {
         this.userCode = "";
         this.processor = new Microprocessor();
     }
-    
+    // returns final result  
     interpret(code) {
-        userCode = code;        
+        this.userCode = code;        
+        return this.userCode;
     }
 }
 
