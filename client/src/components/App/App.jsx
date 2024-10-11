@@ -3,18 +3,23 @@ import { BrowserRouter, Route } from "react-router-dom"
 
 import Editor from "../Editor/Editor.jsx"
 import Header from "../Header/Header.jsx"
-import Buttons from "../Buttons/Buttons.jsx"
 import Console from "../Console/Console.jsx"
 import FileList from "../FileList/FileList.jsx"
-import UserAccount from "../../classes/UserAccount.jsx"
+import NewButton from "../NewButton/NewButton.jsx"
+import SaveButton from "../SaveButton/SaveButton.jsx"
+import DeleteButton from "../DeleteButton/DeleteButton.jsx"
+import RunButton from "../RunButton/RunButton.jsx"
+
+import File from "../../classes/File.jsx"
+import Interpreter from "../../classes/Interpreter.jsx"
+
 
 import "./App.css"
 
 
 function App() 
 { 
-    const [userAccount, setUserAccount] = useState(new UserAccount());
-    const [currentFile, setCurrentFile] = useState(new File([undefined], [undefined]));
+    const [currentFile, setCurrentFile] = useState(new File("", ""));
 
     // Will be called when the user presses one of the file buttons 
     // in the FileList. The Editor takes the currentFile and has a 
@@ -25,14 +30,43 @@ function App()
     }
 
     const userChangedCode = (code) => {
-        currentFile.content = code;
+        currentFile.setContent(code); 
     }
+
+    // new adds to the lsit
+    const newFileCreated = () => {
+
+    }
+
+    // save saves to the list. 
+    const saveCurrentFile = () => {
+
+    }
+
+    // deletes current file
+    const deleteCurrentFile = () => {
+
+    }
+
+    // run current file
+
+    const runCurrentFile = () => {
+        interpreter = new Interpreter(); 
+        
+
+
+        return result;
+    }
+
 
     return (
         <>
-            <BrowserRouter>
+            <BrowserRouter> 
                 <Header/>
-                <Buttons/>
+                <NewButton/>
+                <SaveButton/>
+                <DeleteButton/>
+                <RunButton/>
                 <br/>
                 <br/>
                 <div className="fileListEditorConsoleContainer">
