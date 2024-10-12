@@ -29,11 +29,9 @@ function App()
     const userChangedFile = (file) => {
         setCurrentFile(file);
     }
-
+    
     const userChangedCode = (code) => {
-        const name = currentFile.getName();
-        const file = new File(name, code);
-        setCurrentFile(file);
+        currentFile.setContent(code); 
     }
 
     // new adds to the list

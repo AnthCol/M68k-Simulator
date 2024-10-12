@@ -5,8 +5,6 @@ import File from "../../classes/File"
 
 import "./Editor.css";
 
-
-
 ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
 
 const Editor = ({syncCodeChange, currentFile}) => {

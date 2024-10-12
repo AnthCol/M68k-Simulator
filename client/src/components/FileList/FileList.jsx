@@ -49,7 +49,7 @@ const FileList = ({syncFileChange}) =>
 
     function determineFileButtonClassName(fileInList) {
         let result = "unselectedFile";        
-        if (fileInList == selectedFile) {
+        if (fileInList === selectedFile) {
             result = "selectedFile";
         }
         return result;

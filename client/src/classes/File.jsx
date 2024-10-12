@@ -19,6 +19,10 @@ class File {
     getContent() {
         return this.content;
     }
+
+    setContent(code) {
+        this.content = code;
+    }
 }
 
 export default File;
