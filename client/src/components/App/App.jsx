@@ -6,7 +6,6 @@ import Console      from "../Console/Console.jsx"
 import FileList     from "../FileList/FileList.jsx"
 import NewButton    from "../NewButton/NewButton.jsx"
 import RunButton    from "../RunButton/RunButton.jsx"
-import SaveButton   from "../SaveButton/SaveButton.jsx"
 import DeleteButton from "../DeleteButton/DeleteButton.jsx"
 
 import File from "../../classes/File.jsx"
@@ -28,11 +27,15 @@ function App()
         <>
             <Header/>
 
-            <NewButton/>
+            <NewButton
+                listOfFiles={listOfFiles} 
+                setListOfFiles={setListOfFiles}
+                setSelectedFile={setSelectedFile}
+            />
 
-            <SaveButton/>
+            <DeleteButton
 
-            <DeleteButton/>
+            />
 
             <RunButton 
                 selectedFile={selectedFile}                    
