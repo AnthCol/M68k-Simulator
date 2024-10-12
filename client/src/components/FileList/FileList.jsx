@@ -7,6 +7,10 @@ import "./FileList.css"
 
 const FileList = ({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) => 
 { 
+
+    let previousListLength = -1; 
+
+
     useEffect(() => {
         const getFiles = async () => {
             try {
@@ -32,13 +36,24 @@ const FileList = ({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) 
         getFiles();   
     }, []);
 
-    // When server loads, select the first file
-    // FIXME, this might need to be changed in the future. 
-    // what happens when we add to the list of files with a new file,
-    // but then cannot 
     useEffect(() => {
-        if (listOfFiles.length != 0) {
-            fileChange(listOfFiles[0]); 
+        // Cannot select file if there are not files to select from
+        if (listOfFiles.length == 0) {
+            return;
+        }
+
+        let found = false;
+        for (let i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].getName() == selectedFile.getName()) {
+                fileChange(listOfFiles[i]);
+                found = true;
+            }
+        }
+        
+        // If the user has not selected a file (program startup)
+        // select the first one by default
+        if (!found) {
+            fileChange(listOfFiles[0]);
         }
     }, [listOfFiles])
 
