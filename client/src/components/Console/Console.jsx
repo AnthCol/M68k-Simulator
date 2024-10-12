@@ -4,7 +4,7 @@ import "./Console.css"
 
 ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
 
-function Console({consoleData})
+function Console({consoleOutput})
 {
     let readOnly = true;
 
@@ -13,7 +13,7 @@ function Console({consoleData})
             <div className="console">
                 <AceEditor
                     readOnly={readOnly}
-                    value={consoleData}
+                    value={consoleOutput}
                     height={"100%"} 
                     width={"100%"}
                     theme="github"

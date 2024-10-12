@@ -5,11 +5,8 @@ import ServerInformation from "../../classes/ServerInformation"
 import "./FileList.css"
 
 
-const FileList = ({syncFileChange}) => 
-{
-    const [fileData, setFileData] = useState([]);
-    const [selectedFile, setSelectedFile] = useState(new File("", "")); 
-    
+const FileList = ({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) => 
+{ 
     useEffect(() => {
         const getFiles = async () => {
             try {
@@ -21,10 +18,10 @@ const FileList = ({syncFileChange}) =>
                 
                 if (data.length == 0) {
                     const list = [new File("", "")];
-                    setFileData(list);
+                    setListOfFiles(list);
                 } else {
                     const list = data.map(file => new File(file.name, file.content));
-                    setFileData(list);
+                    setListOfFiles(list);
                 }
 
             } catch (error) {
@@ -36,15 +33,17 @@ const FileList = ({syncFileChange}) =>
     }, []);
 
     // When server loads, select the first file
+    // FIXME, this might need to be changed in the future. 
+    // what happens when we add to the list of files with a new file,
+    // but then cannot 
     useEffect(() => {
-        if (fileData.length != 0) {
-            fileChange(fileData[0]); 
+        if (listOfFiles.length != 0) {
+            fileChange(listOfFiles[0]); 
         }
-    }, [fileData])
+    }, [listOfFiles])
 
     function fileChange(file) {
-        syncFileChange(file);
-        setSelectedFile(file);
+        setSelectedFile(file); 
     } 
 
     function determineFileButtonClassName(fileInList) {
@@ -58,7 +57,7 @@ const FileList = ({syncFileChange}) =>
     return (
         <>
             <div className="fileList">
-                {fileData.map((file, index) => (
+                {listOfFiles.map((file, index) => (
                     <button 
                         key={index} 
                         className={determineFileButtonClassName(file)}
