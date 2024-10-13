@@ -1,6 +1,8 @@
 class PathInformation {
-    static getFilesPath = "/api/files/get";
-    static newFilePath = "/api/files/new";
+    static starterPath = "/api/files";
+    static getFilesPath = this.starterPath + "/get";
+    static newFilePath = this.starterPath + "/new";
+    static deleteFilePath = this.starterPath + "/delete";
 }
 
 export default PathInformation;

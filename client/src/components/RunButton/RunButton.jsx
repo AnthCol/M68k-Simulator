@@ -1,7 +1,11 @@
+import Interpreter from "../../classes/Interpreter.jsx";
+
 function RunButton({selectedFile, setConsoleOutput}) { 
 
-    function runInterpreter(){ 
-        let result = selectedFile.getContent(); 
+    function runInterpreter() { 
+        let interpreter = new Interpreter(); 
+        let code = selectedFile.getContent();
+        let result = interpreter.interpret(code);
         setConsoleOutput(result);
     }
 

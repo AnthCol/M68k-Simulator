@@ -59,6 +59,7 @@ function App()
 
                 <Editor 
                     selectedFile={selectedFile}
+                    setSelectedFile={setSelectedFile}
                 />
 
                 <Console 

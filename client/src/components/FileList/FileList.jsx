@@ -69,7 +69,7 @@ const FileList = ({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) 
                         key={index} 
                         className={determineFileButtonClassName(file)}
                         onClick={() => fileChange(file)}>     
-                    {file.name}
+                    {file.getName()}
                     </button>
                     
                 ))}
