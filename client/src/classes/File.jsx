@@ -1,5 +1,5 @@
 const defaultProgram = "    ORG     $1000\n\nSTART:\n\n    SIMHALT\n\n    END     START";
-const defaultName = "Unnamed File";
+const defaultName = "Placeholder";
 
 class File {
     constructor(name, content) {

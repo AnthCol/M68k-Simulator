@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react"
+import {useEffect} from "react"
 import File from "../../classes/File"
 import PathInformation from "../../classes/PathInformation"
 import ServerInformation from "../../classes/ServerInformation"
@@ -7,10 +7,6 @@ import "./FileList.css"
 
 const FileList = ({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) => 
 { 
-
-    let previousListLength = -1; 
-
-
     useEffect(() => {
         const getFiles = async () => {
             try {
@@ -62,11 +58,7 @@ const FileList = ({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) 
     } 
 
     function determineFileButtonClassName(fileInList) {
-        let result = "unselectedFile";        
-        if (fileInList === selectedFile) {
-            result = "selectedFile";
-        }
-        return result;
+        return (fileInList === selectedFile) ? "selectedFile" : "unselectedFile"; 
     }
 
     return (

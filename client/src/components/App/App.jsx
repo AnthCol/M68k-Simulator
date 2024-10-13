@@ -1,4 +1,4 @@
-import { useState }             from "react"
+import {useEffect, useState} from "react"
 
 import Editor       from "../Editor/Editor.jsx"
 import Header       from "../Header/Header.jsx"
@@ -34,7 +34,10 @@ function App()
             />
 
             <DeleteButton
-
+                listOfFiles={listOfFiles}
+                setListOfFiles={setListOfFiles}
+                selectedFile={selectedFile}
+                setSelectedFile={setSelectedFile}
             />
 
             <RunButton 
