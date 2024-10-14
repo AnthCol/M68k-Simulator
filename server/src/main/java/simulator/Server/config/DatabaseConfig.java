@@ -1,4 +1,4 @@
-package simulator.Server;
+package simulator.Server.config;
 
 import javax.sql.DataSource;
 

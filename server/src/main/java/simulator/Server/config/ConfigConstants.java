@@ -1,4 +1,4 @@
-package simulator.Server;
+package simulator.Server.config;
 
 public class ConfigConstants {
     public static final String clientURL = "http://localhost:5173";

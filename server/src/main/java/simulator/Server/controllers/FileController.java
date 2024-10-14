@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import simulator.Server.ConfigConstants;
+import simulator.Server.config.ConfigConstants;
 import simulator.Server.datatypes.File;
 
 @CrossOrigin(origins = ConfigConstants.clientURL)
