@@ -1,7 +1,7 @@
 import PathInformation from "../../classes/PathInformation.jsx";
 import ServerInformation from "../../classes/ServerInformation.jsx";
 
-function DeleteButton({listOfFiles, setListOfFiles, selectedFile, setSelectedFile}) {
+function DeleteButton({listOfFiles, setListOfFiles, selectedFileIndex, setSelectedFileIndex}) {
 
     const deleteFileFromDatabase = async (fileName) => {
         try {
@@ -27,20 +27,17 @@ function DeleteButton({listOfFiles, setListOfFiles, selectedFile, setSelectedFil
             return;
         }
 
+        let selectedFile = listOfFiles[selectedFileIndex];
         let fileName = selectedFile.getName(); 
 
         deleteFileFromDatabase(fileName);
 
-        // The selected file has been deleted at this point, so we must update
-        // our selection (to the file above it).
         let deletedFileIndex = listOfFiles.findIndex(file => file.getName() === fileName);
-        setSelectedFile((deletedFileIndex === 0) ? listOfFiles[1] : listOfFiles[deletedFileIndex - 1]);
+        setSelectedFileIndex((deletedFileIndex === 0) ? 1 : deletedFileIndex - 1);
         
-        // Remove file from the list of files
         let listWithFileRemoved = listOfFiles.filter(file => file.getName() !== fileName); 
         setListOfFiles(listWithFileRemoved);
     }
-
 
 
     return <button onClick={deleteFile}>Delete</button>

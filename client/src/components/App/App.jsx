@@ -15,7 +15,7 @@ import "./App.css"
 
 function App() 
 { 
-    const [selectedFile, setSelectedFile] = useState(new File("", ""))
+    const [selectedFileIndex, setSelectedFileIndex] = useState(0);
     const [consoleOutput, setConsoleOutput] = useState(""); 
     const [listOfFiles, setListOfFiles] = useState([]);
 
@@ -30,18 +30,19 @@ function App()
             <NewButton
                 listOfFiles={listOfFiles} 
                 setListOfFiles={setListOfFiles}
-                setSelectedFile={setSelectedFile}
+                setSelectedFileIndex={setSelectedFileIndex}
             />
 
             <DeleteButton
                 listOfFiles={listOfFiles}
                 setListOfFiles={setListOfFiles}
-                selectedFile={selectedFile}
-                setSelectedFile={setSelectedFile}
+                selectedFileIndex={selectedFileIndex}
+                setSelectedFileIndex={setSelectedFileIndex}
             />
 
             <RunButton 
-                selectedFile={selectedFile}                    
+                listOfFiles={listOfFiles}
+                selectedFileIndex={selectedFileIndex}
                 setConsoleOutput={setConsoleOutput}
             />
 
@@ -53,13 +54,13 @@ function App()
                 <FileList 
                     listOfFiles={listOfFiles} 
                     setListOfFiles={setListOfFiles} 
-                    selectedFile={selectedFile}
-                    setSelectedFile={setSelectedFile}
+                    selectedFileIndex={selectedFileIndex}
+                    setSelectedFileIndex={setSelectedFileIndex}
                 />
 
                 <Editor 
-                    selectedFile={selectedFile}
-                    setSelectedFile={setSelectedFile}
+                    listOfFiles={listOfFiles}
+                    selectedFileIndex={selectedFileIndex}
                 />
 
                 <Console 

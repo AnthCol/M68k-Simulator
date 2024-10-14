@@ -4,7 +4,7 @@ import PathInformation from "../../classes/PathInformation.jsx";
 import ServerInformation from "../../classes/ServerInformation.jsx";
 import "../../reusable/reusable.css";
 
-function NewButton({listOfFiles, setListOfFiles, setSelectedFile}) {
+function NewButton({listOfFiles, setListOfFiles, setSelectedFileIndex}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [newFileName, setNewFileName] = useState("");
     const dialogReference = useRef(null);
@@ -71,10 +71,11 @@ function NewButton({listOfFiles, setListOfFiles, setSelectedFile}) {
         }
 
         let file = new File(name, "");
+        let newFileIndex = listOfFiles.length;
 
         addFileToDatabase(file);
         setListOfFiles(listOfFiles.concat([file]));
-        setSelectedFile(listOfFiles[listOfFiles.length - 1]);
+        setSelectedFileIndex(newFileIndex);
         setNewFileName("");
         closeCreateFileDialog();
     }
@@ -90,7 +91,6 @@ function NewButton({listOfFiles, setListOfFiles, setSelectedFile}) {
             <button onClick={openCreateFileDialog}>New</button>
             {isModalOpen && (
                 <dialog className="dialog" ref={dialogReference}>
-                    <button onClick={closeCreateFileDialog}>Cancel</button>
                     <p>Enter a name for the new file: </p>
                     <input
                         type="text"
@@ -100,6 +100,7 @@ function NewButton({listOfFiles, setListOfFiles, setSelectedFile}) {
                     />{" "}.x68
                     <br/>
                     <br/>
+                    <button onClick={closeCreateFileDialog}>Cancel</button>
                     <button onClick={submitFileName}>Submit</button> 
                 </dialog>
             )}

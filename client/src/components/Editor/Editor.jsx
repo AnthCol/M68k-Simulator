@@ -5,18 +5,10 @@ import "./Editor.css";
 
 ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
 
-const Editor = ({selectedFile, setSelectedFile}) => {  
+const Editor = ({listOfFiles, selectedFileIndex}) => {  
     const codeChange = (newCode) => { 
-
-        // FIXME future change, we need to make sure everythign is 
-        // accesing the same reference. We need to just access the file 
-        // in the array with an index, rather than having a "selectedFile"
-        // variable since we may desync the reference to the file in the 
-        // list. 
-        // let file = new File(selectedFile.getName(), newCode);
-        // setSelectedFile(file);
-
-        selectedFile.setContent(newCode);
+        let file = listOfFiles[selectedFileIndex]
+        file.setContent(newCode);
 
         // FIXME send request to the server to
         // update the file content in the database. 
@@ -28,11 +20,18 @@ const Editor = ({selectedFile, setSelectedFile}) => {
     
     const defaultProgram = "";
 
+    function getSelectedFileContent() {
+        if (listOfFiles.length == 0) {
+            return "";
+        }
+        return listOfFiles[selectedFileIndex].getContent()
+    }
+
     return (
         <div className="editor">
             <AceEditor
                 onChange={codeChange}
-                value={selectedFile.getContent()}
+                value={getSelectedFileContent()}
                 defaultValue={defaultProgram}
                 fontSize={14}
                 lineHeight={19}
