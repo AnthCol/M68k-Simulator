@@ -1,37 +1,56 @@
 ### M68k-Simulator (Work In Progress)
 
-A simulator for the [Motorola 68000](https://en.wikipedia.org/wiki/Motorola_68000)!
+> A web-based development environment and simulator for the [Motorola 68000](https://en.wikipedia.org/wiki/Motorola_68000)!
 
 ### Technologies
 
-- React
-- Spring Boot
-- PostgreSQL
-- Docker
-- Vite
 
-### Stages
 
-- [ ] Design frontend as simple text editor
-- [ ] Make backend and database work for text files
-- [ ] Make accounts work
-- [ ] Upgrade frontend
-- [ ] Implement M68k interpreter
+<p align="left"> 
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> 
+<a href="https://spring.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="40" height="40"/> </a> 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> 
+<a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> 
+<a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> 
+<a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> 
+</p>
+
+
+### Roadmap
+
+- [x] Create basic design for frontend
+- [x] Connect frontend, server, and database together
+- [ ] Implement the M68k simulator logic
+- [ ] Make database persistent across launches
+- [ ] Upgrade frontend to include things such as STDIN
+- [ ] Allow users to create separate accounts
+
+
+### Prerequisites
+
+To use this project, you must have [Docker](https://www.docker.com/) installed, and a web browser. That's it!
 
 ### Usage
 
 ```bash
-# The command to start the program is below:
+# All docker commands should be done from the root directory of this project. 
+# To start the program up, run the following comand:
 docker compose up --build
-# Assuming this is successful (which is should be)
-# You can then visit http://localhost:3000 for the simulator
+
+# Once complete, access the following address:
+https://localhost:5173
 
 # To shut the program down do the following:
 docker compose down
 
+
 # Scripts have also been provided for your convenience:
 ./run.ps1
 ./run.sh
+
+# These scripts will run the following commands in order:
+docker compose down
+docker compsose up --build
 ```
 
 ### Motivation
@@ -40,7 +59,10 @@ When I was a student at the University of Guelph, we learned how to program in a
 
 ### Limitations
 
-This is not a fully fleshed out simulator. It is not able to handle 100% of the things you would be doing on an M68k board. It only supports output to a console for example. I decided that fully implementing these things would not be worth it, since the students at Guelph (at least for me when I took the course) only output to something other than the console in the final lab. This simulator should suffice for the large majority of the work one will do in that course, and for me, that is all I really want to make at the moment.
+This simulator does not provide any hardware simulation outside of output to the console.
+Futhermore, only instructions for the M68000 board will are implemented. There are other processors in the M68k *family*, and there may be instructions supported by those boards but not by the 68000 board. To see what instructions are supported, see page XXX of the M68k Programmers Reference Manual. 
 
+I wouldn't mind implementing these instructions and hardware simulation in the future, but for the purpose of course at the University of Guelph, what
+is here will be enough for the very large majority of things required of students. 
 
 
