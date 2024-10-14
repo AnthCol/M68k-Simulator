@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import simulator.Server.config.ConfigConstants;
 import simulator.Server.datatypes.File;
+import simulator.Server.interpreter.Interpreter;
+
 
 @CrossOrigin(origins = ConfigConstants.clientURL)
 @RestController
@@ -65,5 +69,12 @@ public class FileController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @PostMapping(ConfigConstants.filesPathPrefix + "/interpret")
+    public ResponseEntity<String> interpretFile(@RequestBody String fileContent) {
+        Interpreter interpreter = new Interpreter();
+        String result = interpreter.interpret(fileContent);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

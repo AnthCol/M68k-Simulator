@@ -11,17 +11,15 @@ function RunButton({listOfFiles, selectedFileIndex, setConsoleOutput}) {
             const response = await fetch (ServerInformation.location + PathInformation.interpretFilePath, {
                 method: "POST",
                 headers: {
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "text/plain"
                 },
-                body: JSON.stringify({
-                    content : fileContent
-                })
+                body: fileContent
             });
 
             if (!response.ok) {
                 throw new Error("Network response for  " + PathInformation.interpretFilePath + " was not ok.");
             }
-            const result = await response.json();
+            const result = await response.text();
             setConsoleOutput(result);
         } catch (error) {
             console.error(error.message);

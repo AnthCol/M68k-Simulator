@@ -1,6 +1,5 @@
 import ace from "ace-builds/src-noconflict/ace";
 import AceEditor from "react-ace";
-import File from "../../classes/File.jsx";
 import "./Editor.css";
 
 ace.config.set("basePath", "/node_modules/ace-builds/src-noconflict");
@@ -9,7 +8,6 @@ const Editor = ({listOfFiles, selectedFileIndex}) => {
     const codeChange = (newCode) => { 
         let file = listOfFiles[selectedFileIndex]
         file.setContent(newCode);
-
         // FIXME send request to the server to
         // update the file content in the database. 
         // implementing autosave with a timer?
