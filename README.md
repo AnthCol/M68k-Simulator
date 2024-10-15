@@ -2,6 +2,11 @@
 
 > A web-based development environment and simulator for the [Motorola 68000](https://en.wikipedia.org/wiki/Motorola_68000)!
 
+
+![GitHub last commit](https://img.shields.io/github/last-commit/AnthCol/M68k-Simulator) <br/>
+![GitHub repo size](https://img.shields.io/github/repo-size/AnthCol/M68k-Simulator)
+
+
 ### Technologies
 
 
@@ -16,13 +21,18 @@
 </p>
 
 
+![Static Badge](https://img.shields.io/badge/React%20Version-18.3.1-blue) <br/>
+![Static Badge](https://img.shields.io/badge/Spring%20Boot%20Version-3.3.4-green) <br/>
+![Static Badge](https://img.shields.io/badge/Java%20Version-17-brown) <br/>
+![Static Badge](https://img.shields.io/badge/PostgreSQL%20Version-17-lightblue)
+
 ### Roadmap
 
 - [x] Create basic design for frontend
 - [x] Connect frontend, server, and database together
-- [ ] Implement the M68k simulator logic
+- [ ] Implement the M68k simulator logic (tokenizer, parser, interpreter)
 - [ ] Make database persistent across launches
-- [ ] Upgrade frontend to include things such as STDIN
+- [ ] Upgrade frontend to include things such as STDIN, at this time improve the appearance as well
 - [ ] Allow users to create separate accounts
 
 
@@ -50,7 +60,7 @@ docker compose down
 
 # These scripts will run the following commands in order:
 docker compose down
-docker compsose up --build
+docker compose up --build
 ```
 
 ### Motivation
@@ -60,7 +70,7 @@ When I was a student at the University of Guelph, we learned how to program in a
 ### Limitations
 
 This simulator does not provide any hardware simulation outside of output to the console.
-Futhermore, only instructions for the M68000 board will are implemented. There are other processors in the M68k *family*, and there may be instructions supported by those boards but not by the 68000 board. To see what instructions are supported, see page XXX of the M68k Programmers Reference Manual. 
+Futhermore, only instructions for the M68000 board will are implemented. There are other processors in the M68k *family*, and there may be instructions supported by those boards but not by the 68000 board. To see what instructions are supported, see Appendix A of the [M68k Programmers Reference Manual](https://m680x0.github.io/ref/M68000PM_AD_Rev_1_Programmers_Reference_Manual_1992.pdf).
 
 I wouldn't mind implementing these instructions and hardware simulation in the future, but for the purpose of course at the University of Guelph, what
 is here will be enough for the very large majority of things required of students. 
