@@ -1,11 +1,15 @@
-CREATE TABLE files (
-    name VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS files (
+    name    TEXT PRIMARY KEY,
+    content TEXT
 );
 
 
-INSERT INTO files (name, content) VALUES 
-    ('first.x68', 'first'), 
-    ('second.x68', 'second'), 
-    ('third.x68', 'third');
+DO $$ 
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM files) THEN
+        INSERT INTO files (name, content) VALUES
+            ('MyFirstFile.x68', '* My First File');
+    END IF;
+END $$;
+
 
