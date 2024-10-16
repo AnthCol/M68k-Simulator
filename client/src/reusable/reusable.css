@@ -1,0 +1,26 @@
+.dialog {
+    /* height: 15rem;
+    width: 20rem; */
+    padding: 2rem;
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: hsl(0 0% 0% / 10%) 0 0 0.5rem 0.25rem;
+    position: relative;
+}
+
+.dialog::backdrop {
+    background: hsl(0 0% 0% / 50%);
+}
+
+.dialogNewFile {
+    height: 15rem;
+    width: 20rem;
+}
+
+.dialogDeleteFile {
+    height: 12rem;
+    width: 10rem;
+}
+
+
+
