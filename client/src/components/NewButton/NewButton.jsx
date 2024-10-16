@@ -90,7 +90,7 @@ function NewButton({listOfFiles, setListOfFiles, setSelectedFileIndex}) {
         <>
             <button onClick={openCreateFileDialog}>New</button>
             {isModalOpen && (
-                <dialog className="dialog" ref={dialogReference}>
+                <dialog className="dialog dialogNewFile" ref={dialogReference}>
                     <p>Enter a name for the new file: </p>
                     <input
                         type="text"
