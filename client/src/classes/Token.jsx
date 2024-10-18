@@ -1,5 +1,4 @@
 class Token { 
-
     constructor(lexeme, lineNumber, tokenType){
         this.lexeme = lexeme;
         this.lineNumber = lineNumber;
